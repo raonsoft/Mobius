@@ -129,7 +129,9 @@ if (use_clustering) {
             cluster.fork();
         });
 
-        db.connect(usedbhost, 3306, 'root', usedbpass, (rsc) => {
+        console.log( 'usedbpass1', usedbpass)
+
+        db.connect(usedbhost, 3306, 'mobius', usedbpass, (rsc) => {
             if (rsc == '1') {
                 db.getConnection((code, connection) => {
                     if (code === '200') {
@@ -171,7 +173,9 @@ if (use_clustering) {
         });
     }
     else {
-        db.connect(usedbhost, 3306, 'root', usedbpass, (rsc) => {
+        console.log( 'usedbpass2', usedbpass)
+
+        db.connect(usedbhost, 3306, 'mobius', usedbpass, (rsc) => {
             if (rsc === '1') {
                 db.getConnection((code, connection) => {
                     if (code === '200') {
@@ -214,7 +218,9 @@ if (use_clustering) {
     }
 }
 else {
-    db.connect(usedbhost, 3306, 'root', usedbpass, (rsc) => {
+    console.log( 'usedbpass3', usedbpass)
+
+    db.connect(usedbhost, 3306, 'mobius', usedbpass, (rsc) => {
         if (rsc == '1') {
             db.getConnection((code, connection) => {
                 if (code === '200') {

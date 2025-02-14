@@ -21,8 +21,11 @@ try {
     conf = JSON.parse(fs.readFileSync('conf.json', 'utf8'));
 }
 catch (e) {
-    conf.csebaseport = "7579";
-    conf.dbpass = "dksdlfduq2";
+    conf.csebaseport = process.env.MOBIUS_PORT || "7579";
+    conf.dbpass = process.env.DB_PASSWORD || "mobius1234!";
+    conf.dbhost = process.env.DB_HOST || 'localhost'
+    conf.dbname = process.env.DB_NAME || 'mobiusdb'
+    conf.mqtthost = process.env.MQTT_HOST || 'localhost'
     fs.writeFileSync('conf.json', JSON.stringify(conf, null, 4), 'utf8');
 }
 
@@ -34,7 +37,7 @@ global.usecsebase           = 'Mobius';
 global.usecseid             = '/Mobius2';
 global.usecsebaseport       = conf.csebaseport;
 
-global.usedbhost            = 'localhost';
+global.usedbhost            = conf.dbhost;
 global.usedbpass            = conf.dbpass;
 
 
@@ -47,7 +50,7 @@ global.use_hit_man_port     = '7594';
 
 global.usetsagentport       = '7582';
 
-global.use_mqtt_broker      = 'localhost'; // mqttbroker for mobius
+global.use_mqtt_broker      = conf.mqtthost; // mqttbroker for mobius
 
 global.use_secure           = 'disable';
 global.use_mqtt_port        = '1883';
